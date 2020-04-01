@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block title %}Remove Book{% endblock %}
+
+{% block head %}
+  {{ super() }}
+{% endblock %}
+
+{% block content %}
+<div class="remove-form">
+  <div>
+    <form action="{{ url_for('remove') }}" method="post" class="card card-sm">
+      <h4 class="text-dark text-center">Remove Book</h4>
+      <div class="form-group">
+        <label for="isbn" class="text-secondary">ISBN:</label><br>
+        <input type="text" name="isbn" id="isbn" class="form-control" required>
+      </div>
+      <input type="submit" name="register" class="btn btn-success btn-block btn-lg" value="Remove">
+    </form>
+  </div>
+</div>
+{% endblock %}

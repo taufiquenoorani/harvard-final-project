@@ -1,0 +1,161 @@
+{% extends "layout.html" %}
+{% block title %}Book Details{% endblock %}
+
+{% block head %}
+  {{ super() }}
+{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-sm-8">
+    <h3 class="text-dark text-center p-2">Book Details</h3>
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr class="thead-dark">
+          <th>ISBN</th>
+          <th>Title</th>
+          <th>Author</th>
+          <th>Year</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ books.isbn }}</td>
+          <td>{{ books.title }}</td>
+          <td>{{ books.author }}</td>
+          <td>{{ books.year }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="row justify-content-center">
+  <div class="col-sm-8">
+    <h3 class="text-dark text-center p-2">Book Reviews</h3>
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr class="thead-dark">
+          <th>Total Reviews</th>
+          <th>Average Ratings</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ total_reviews }}</td>
+          <td>{{ avg_ratings }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="row justify-content-center">
+  <div class="col-sm-8">
+    <h3 class="text-dark text-center p-2">GoodReads Stats</h3>
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr class="thead-dark">
+          <th>GoodReads Total Ratings</th>
+          <th>GoodReads Average Ratings</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ good_reads_total }}</td>
+          <td>{{ good_reads_avg }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="row justify-content-center">
+  <div class="col-sm-8">
+    <h3 class="text-dark text-center p-2">User Reviews</h3>
+    {% if user_reviews %}
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr class="thead-dark">
+          <th>User</th>
+          <th>Rating</th>
+          <th>Review</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for reviews in user_reviews %}
+          {% if reviews.rate == 1 %}
+            <tr>
+              <td>{{ reviews.username }}</td>
+              <td>★☆☆☆☆</td>
+              <td>{{ reviews.comment }}</td>
+            </tr>
+          {% elif reviews.rate == 2 %}
+            <tr>
+              <td>{{ reviews.username }}</td>
+              <td>★★☆☆☆</td>
+              <td>{{ reviews.comment }}</td>
+            </tr>
+          {% elif reviews.rate == 3 %}
+            <tr>
+              <td>{{ reviews.username }}</td>
+              <td>★★★☆☆</td>
+              <td>{{ reviews.comment }}</td>
+            </tr>
+          {% elif reviews.rate == 4 %}
+            <tr>
+              <td>{{ reviews.username }}</td>
+              <td>★★★★☆</td>
+              <td>{{ reviews.comment }}</td>
+            </tr>
+          {% elif reviews.rate == 5 %}
+            <tr>
+              <td>{{ reviews.username }}</td>
+              <td>★★★★★</td>
+              <td>{{ reviews.comment }}</td>
+            </tr>
+          {% endif %}
+        {% endfor %}
+      </tbody>
+    </table>
+    {% endif %}
+  </div>
+</div>
+
+<div class="text-center">
+  <button type="button" class="btn btn-success" data-toggle="modal" data-target="#writeReview">
+    Leave a Review
+  </button>
+</div>
+
+<div class="modal fade" id="writeReview" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="writeReview">Write Review</h5>
+      </div>
+      <div class="modal-body">
+        <form id="review" class="form" action="{{ url_for('search', bookisbn=books.isbn) }}" method="post">
+          <div class="form-group">
+            <h4>Rate Book</h4>
+            <input type="radio" name="options" value="1"> Awful. (★☆☆☆☆)<br>
+            <input type="radio" name="options" value="2"> Poor. (★★☆☆☆)<br>
+            <input type="radio" name="options" value="3"> Fair. (★★★☆☆)<br>
+            <input type="radio" name="options" value="4"> Good. (★★★★☆)<br>
+            <input type="radio" name="options" value="5"> Excellent. (★★★★★)<br>
+            <hr>
+          </div>
+          <h4> Write Comment </h4>
+          <div class="input-group">
+            <textarea class="form-control" rows="10" cols="92" name="comment"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success" onclick="history.go(0);event.preventDefault();document.getElementById('review').submit();">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

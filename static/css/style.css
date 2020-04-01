@@ -1,0 +1,82 @@
+body {
+  background: #f5f5f5;
+  font-family: 'Varela Round', sans-serif;
+  font-size: 16px;
+}
+.login, .register, .add, .remove {
+  position: absolute;
+  width: 350px;
+  left: 50%;
+  top: 40%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.login-form, .register-form, .add-form, .remove-form {
+  width: 350px;
+	margin: 0 auto;
+	padding: 30px 0;
+}
+.login-form form, .register-form form, .add-form form, .remove-form form {
+  border-radius: 1px;
+  margin-bottom: 15px;
+  background: #fff;
+  border: 1px solid #f3f3f3;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  padding: 30px;
+}
+.login-form h4, .register-form h4, .add-form h4, .remove-form h4 {
+  margin-bottom: 20px;
+}
+.bg-light {
+  background-color: #EAEAEA!important;
+}
+.form-control{
+   font-size: 14px;
+}
+.search {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+h1, h3 {
+  font-family: Consolas,monaco,monospace;
+  font-size: 20px;
+}
+table {
+    margin: 0 auto;
+}
+.add-to-cart {
+  color: rgba(0,0,0,.5);
+}
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 18%;
+  margin-top: 50px;
+}
+.dropdown-item {
+  color: rgba(0,0,0,.5);
+  font-family: 'Varela Round', sans-serif;
+  font-size: 16px;
+}
+.custom-select-sm {
+  padding-top: 0rem;
+  padding-bottom: 0rem;
+}
+#loading {
+  /* Loading GIF https://loading.io/ */
+  background: url('/static/img/loading.gif') no-repeat center center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 9999999;
+}

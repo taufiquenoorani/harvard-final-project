@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block title %}Login{% endblock %}
+
+{% block head %}
+  {{ super() }}
+{% endblock %}
+
+{% block content %}
+<div class="login-form">
+  <div class="login">
+    <form class="form" action="{{url_for('login')}}" method="post">
+      <h4 class="text-dark text-center">LOGIN</h4>
+      <div class="form-group">
+        <input type="text" name= "username" class="form-control" placeholder="Username" required="required">
+      </div>
+      <div class="form-group">
+        <input type="password" name="password" class="form-control" placeholder="Password" required="required">
+      </div>
+      <input type="submit" name="submit" class="btn btn-success btn-block btn-lg" value="Login">
+    </form>
+    <div class="text-center small">Don't have an account? <a class="text-success" href="{{url_for('register')}}">Register</a></div>
+  </div>
+</div>
+{% endblock %}

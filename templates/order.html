@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% block title %}Order History{% endblock %}
+
+{% block head %}
+  {{ super() }}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <h3 class="text-dark text-center p-2">All Orders</h3>
+  {% if all_orders %}
+    <table id="pagination" class="table table-bordered table-hover" style="width:100%">
+      <thead>
+        <tr class="thead-dark">
+          <th>User</th>
+          <th>Title</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for all_order in all_orders %}
+        <tr>
+          <td>{{ all_order.username }}</td>
+          <td>{{ all_order.title }}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    <p class="text-center"><a href="{{ url_for('index') }}">Click Here </a>to go back to Search Page</p>
+  {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+{% block title %}All Books{% endblock %}
+
+{% block head %}
+  {{ super() }}
+{% endblock %}
+
+{% block content %}
+<div id="loading"></div>
+<div class="container">
+    <h3 class="text-dark text-center p-2">All Books</h3>
+    {% if books %}
+      <table id="pagination" class="table table-bordered table-hover" style="width:100%">
+        <thead>
+          <tr class="thead-dark">
+            <th>ISBN</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Year</th>
+            <th>Details</th>
+            <th>Rent</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for book in books %}
+          <tr>
+            <td>{{ book.isbn }}</td>
+            <td>{{ book.title }}</td>
+            <td>{{ book.author }}</td>
+            <td>{{ book.year }}</td>
+            <td><a class="badge badge-success" href="{{ url_for('search', bookisbn=book.isbn) }}">more info</a</td>
+            <td><a href="#" class="add-to-cart" data-name="{{ book.isbn }}" data-price="1.99"><span class="glyphicon glyphicon-shopping-cart"></span></a></td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+      <p class="text-center">Displaying {{ total_books }} results....</p>
+      <p class="text-center"><a href="{{ url_for('index') }}">Click Here </a>to go back to Search Page</p>
+      {% else %}
+        <p class="text-center">I am sorry, I couldn't find any matchting books</p>
+        <p class="text-center"><a href="{{ url_for('index') }}">Click Here </a>to go back to Search Page</p>
+    {% endif %}
+</div>
+{% endblock %}
